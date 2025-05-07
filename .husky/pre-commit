@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+echo "👷 Running pre-commit checks..."
+
+# Check Prettier formatting
+npm run check-format || {
+    echo "❌ Prettier check failed! Run 'npm run format' and try again."
+    exit 1
+}
+
+# Check ESLint
+npm run lint || {
+    echo "❌ ESLint errors! Fix them before committing."
+    exit 1
+}
+
+# Check TypeScript types
+npm run check-types || {
+    echo "❌ TypeScript errors found. Fix them!"
+    exit 1
+}
+
+# Check Next.js build (fails on warnings)
+npm run build --max-warnings=0 || {
+    echo "❌ Next.js build failed! Check errors above."
+    exit 1
+}
+
+echo "✅ All checks passed! Committing..."

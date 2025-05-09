@@ -1,3 +1,5 @@
+// Breadcrumbs help users track their location within a website by showing the path from the homepage to the current page.
+
 "use client";
 
 import { usePathname } from "next/navigation";

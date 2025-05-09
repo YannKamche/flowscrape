@@ -8,6 +8,9 @@ import {
 } from "lucide-react";
 import React from "react";
 import Logo from "./Logo";
+import Link from "next/link";
+import { buttonVariants } from "./ui/button";
+import { usePathname } from "next/navigation";
 
 // route definition
 const routes = [
@@ -34,10 +37,38 @@ const routes = [
 ];
 
 function DesktopSidebar() {
+  // Determine the active item on the Sidebar
+  const pathname = usePathname();
+  const activeRoute =
+    routes.find(
+      (route) => route.href.length > 0 && pathname.includes(route.href),
+    ) || routes[0];
+
   return (
     <div className="hidden relative md:block min-w-[280px] max-w-[280px] h-screen overflow-hidden w-full bg-primary/5 dark:bg-secondary/30 text-muted-foreground dark:text-foreground border-r-2 border-separate">
       <div className="flex items-center justify-center gap-2 border-b-[1px border-separate p-4">
         <Logo />
+      </div>
+
+      {/* Component displaying current user credits */}
+      <div className="p-2">TODO CREDITS</div>
+      <div className="flex flex-col p-2">
+        {routes.map((route) => (
+          // buttonVariants is a utility function from shadcn that generates consistent styling for buttons
+          <Link
+            key={route.href}
+            href={route.href}
+            className={buttonVariants({
+              variant:
+                activeRoute.href == route.href
+                  ? "sidebarActiveItem"
+                  : "sidebarItem",
+            })}
+          >
+            <route.icon size={20} />
+            {route.label}
+          </Link>
+        ))}
       </div>
     </div>
   );

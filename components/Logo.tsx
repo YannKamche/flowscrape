@@ -26,9 +26,9 @@ combines class names efficiently when dealing with conditional styles and overri
       </div>
       <div>
         <span className="bg-gradient-to-r from-emerald-500 to bg-emerald-600 bg-clip-text text-transparent">
-          Flow
+          Scraper
         </span>
-        <span className="text-stone-700 dark:text-stone-300">Scrape</span>
+        <span className="text-stone-700 dark:text-stone-300">Flow</span>
       </div>
     </Link>
   );

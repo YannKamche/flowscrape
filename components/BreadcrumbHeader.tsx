@@ -17,7 +17,7 @@ function BreadcrumbHeader() {
   const pathname = usePathname();
   const paths = pathname === "/" ? [""] : pathname?.split("/");
   return (
-    <div className="flex items-cente flex-start">
+    <div className="flex items-center flex-start">
       <MobileSidebar />
       <Breadcrumb>
         <BreadcrumbList>

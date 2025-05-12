@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+//Workflow table definition
+model Workflow {
+  //id is going to be the id of the table. cuid is designed to avoid collision. It's shorter and easier to use
+  
+  id String @id @default(cuid()) 
+  userId String
+  name String
+  description String?
+
+  definition String
+  status String
+
+  //default value of created at will be now
+  createdAt DateTime @default(now())
+
+  //This tells prigma to updated this field every time the record is updated
+  updatedAt DateTime @updatedAt
+
+  //User cannot have two Workflows with the same name
+  @@unique([name, userId])
+}

@@ -53,7 +53,7 @@ function DesktopSidebar() {
       </div>
 
       {/* Component displaying current user credits */}
-      {/* <div className="p-2">TODO CREDITS</div> */}
+      <div className="p-2">TODO CREDITS</div>
       <div className="flex flex-col p-2">
         {routes.map((route) => (
           // buttonVariants is a utility function from shadcn that generates consistent styling for buttons

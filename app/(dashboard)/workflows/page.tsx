@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle, InboxIcon } from "lucide-react";
 import CreateWorkflowDialog from "./_components/CreateWorkflowDialog";
+import WorkflowCard from "./_components/WorkflowCard";
 
 function Workflows() {
   return (
@@ -96,7 +97,14 @@ async function UserWorkflows() {
   }
 
   // retrieve the user workflows from the database by caling prisma inside UserWorkflows component. But instead of doing that, we create a server action to maintain the code structure
-  return <div></div>;
+  // return <pre>{JSON.stringify(workflows, null, 4)}</pre>; returns the different workflows created in the database
+  return (
+    <div className="grid grid-cols-1 gap-4">
+      {workflows.map((workflow) => (
+        <WorkflowCard key={workflow.id} workflow={workflow} />
+      ))}
+    </div>
+  );
 }
 
 export default Workflows;

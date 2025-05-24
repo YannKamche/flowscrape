@@ -3,6 +3,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 export async function GetWorkflowsForUser() {
   // We need to know the user ID and by doing that we are also check if the user is authenticated
@@ -24,4 +25,7 @@ export async function GetWorkflowsForUser() {
       createdAt: "asc",
     },
   });
+
+  // Immediately reload the workflow page (a server component)
+  revalidatePath("/worflows");
 }
